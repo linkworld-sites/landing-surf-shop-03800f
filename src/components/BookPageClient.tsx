@@ -5,6 +5,38 @@ import { motion, useReducedMotion } from "framer-motion";
 import { track } from "@/lib/funnel";
 import ConversionForm from "@/components/ConversionForm";
 
+const BoltSvg = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13 2 3 14h9l-1 8 10-12h-9z" />
+  </svg>
+);
+const WaveSvg = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+    <path d="M2 12c1.6-4 3.4-4 5 0s3.4 4 5 0 3.4-4 5 0" />
+    <path d="M2 17c1.6-4 3.4-4 5 0s3.4 4 5 0 3.4-4 5 0" opacity="0.45" />
+  </svg>
+);
+const PersonSvg = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="5" r="2" />
+    <path d="M5 20c0-4 3-7 7-7s7 3 7 7" />
+    <line x1="2" y1="20" x2="22" y2="20" />
+  </svg>
+);
+const SunSvg = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+);
+
 const BOOKING_FIELDS = [
   { name: "name", label: "Your Name", required: true },
   { name: "email", label: "Email Address", type: "email" as const, required: true },
@@ -15,10 +47,10 @@ const BOOKING_FIELDS = [
 ];
 
 const SERVICES = [
-  { icon: "⚡", title: "1-Hour eFoil Rental", price: "from $149", desc: "Perfect intro to electric hydrofoiling" },
-  { icon: "🌊", title: "Half-Day Session", price: "from $349", desc: "3 hours to really find your foil feet" },
-  { icon: "🏄", title: "Beginner Lesson", price: "from $199", desc: "Certified instructor, 2 hours on the water" },
-  { icon: "🔥", title: "Full-Day Adventure", price: "from $549", desc: "Sunrise to sunset — bring a crew" },
+  { icon: <BoltSvg />, title: "1-Hour eFoil Rental", price: "from $149", desc: "Perfect intro to electric hydrofoiling" },
+  { icon: <WaveSvg />, title: "Half-Day Session", price: "from $349", desc: "3 hours to really find your foil feet" },
+  { icon: <PersonSvg />, title: "Beginner Lesson", price: "from $199", desc: "Certified instructor, 2 hours on the water" },
+  { icon: <SunSvg />, title: "Full-Day Adventure", price: "from $549", desc: "Sunrise to sunset — bring a crew" },
 ];
 
 export default function BookPageClient() {
@@ -82,7 +114,7 @@ export default function BookPageClient() {
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
                 className="text-center"
               >
-                <div className="text-2xl mb-1">{s.icon}</div>
+                <div className="w-8 h-8 mb-1 mx-auto flex items-center justify-center text-navy">{s.icon}</div>
                 <div className="font-heading font-bold text-navy text-xs uppercase tracking-wide mb-0.5">
                   {s.title}
                 </div>

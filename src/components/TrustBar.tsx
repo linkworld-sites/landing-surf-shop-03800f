@@ -2,11 +2,35 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+const BoltSvg = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13 2 3 14h9l-1 8 10-12h-9z" />
+  </svg>
+);
+const WaveSvg = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+    <path d="M2 12c1.6-4 3.4-4 5 0s3.4 4 5 0 3.4-4 5 0" />
+    <path d="M2 17c1.6-4 3.4-4 5 0s3.4 4 5 0 3.4-4 5 0" opacity="0.45" />
+  </svg>
+);
+const CompassSvg = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+const ShieldCheckSvg = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-3 8-10V5l-8-3-8 3v7c0 7 8 10 8 10z" />
+    <polyline points="9 12 11 14 15 10" />
+  </svg>
+);
+
 const SIGNALS = [
-  { icon: "⚡", label: "Electric surf pioneers", sub: "First movers on the coast" },
-  { icon: "🌊", label: "Beginner-friendly lessons", sub: "Zero experience needed" },
-  { icon: "🏄", label: "Premium eFoil brands", sub: "Fliteboard, Lift & more" },
-  { icon: "✅", label: "Secure checkout", sub: "Protected by SSL" },
+  { icon: <BoltSvg />, label: "Electric surf pioneers", sub: "First movers on the coast" },
+  { icon: <WaveSvg />, label: "Beginner-friendly lessons", sub: "Zero experience needed" },
+  { icon: <CompassSvg />, label: "Premium eFoil brands", sub: "Fliteboard, Lift & more" },
+  { icon: <ShieldCheckSvg />, label: "Secure checkout", sub: "Protected by SSL" },
 ];
 
 const containerVariants = {
@@ -45,9 +69,9 @@ export default function TrustBar() {
               variants={prefersReduced ? undefined : itemVariants}
               className="flex flex-col items-center text-center md:px-8 gap-1"
             >
-              <span className="text-3xl leading-none mb-2" aria-hidden="true">
+              <div className="w-8 h-8 mb-2 flex items-center justify-center text-primary" aria-hidden="true">
                 {signal.icon}
-              </span>
+              </div>
               <p className="font-heading font-bold text-cream text-xs md:text-sm uppercase tracking-[0.12em] leading-tight">
                 {signal.label}
               </p>

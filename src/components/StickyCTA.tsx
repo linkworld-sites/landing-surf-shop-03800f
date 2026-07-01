@@ -40,7 +40,11 @@ export default function StickyCTA() {
           onClick={() => track("intent")}
           className="font-heading font-bold text-navy text-sm md:text-base tracking-wide hover:underline inline-flex items-center gap-2 flex-1"
         >
-          <span className="hidden sm:inline">⚡</span>
+          <span className="hidden sm:inline" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M13 2 3 14h9l-1 8 10-12h-9z" />
+            </svg>
+          </span>
           Book your eFoil session — slots filling fast
           <motion.span
             animate={{ x: [0, 4, 0] }}

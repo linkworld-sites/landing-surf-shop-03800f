@@ -114,10 +114,14 @@ export default function BookingCTA({ onBookClick }: Props) {
           transition={{ delay: 0.5 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-6 text-cream/45 font-body text-xs uppercase tracking-wider"
         >
-          <span>✓ All gear provided</span>
-          <span>✓ Certified instructors</span>
-          <span>✓ Free cancellation 24h</span>
-          <span>✓ All skill levels</span>
+          {["All gear provided", "Certified instructors", "Free cancellation 24h", "All skill levels"].map((t) => (
+            <span key={t} className="inline-flex items-center gap-1.5">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              {t}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>

@@ -1,8 +1,28 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { track } from "@/lib/funnel";
+
+const BoardSvg = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13 2 3 14h9l-1 8 10-12h-9z" />
+  </svg>
+);
+const BookSvg = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+  </svg>
+);
+const ShoppingBagSvg = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
+  </svg>
+);
 
 interface ServiceDef {
   eyebrow: string;
@@ -19,7 +39,8 @@ interface ServiceDef {
   btnBg: string;
   btnText: string;
   btnBorder: string;
-  icon: string;
+  icon: ReactNode;
+  iconColor: string;
   isBooking: boolean;
 }
 
@@ -39,7 +60,8 @@ const SERVICES: ServiceDef[] = [
     btnBg: "bg-primary hover:bg-cyan-400",
     btnText: "text-navy",
     btnBorder: "border-transparent",
-    icon: "🏄",
+    icon: <BoardSvg />,
+    iconColor: "text-primary",
     isBooking: true,
   },
   {
@@ -57,7 +79,8 @@ const SERVICES: ServiceDef[] = [
     btnBg: "bg-navy hover:bg-navy/85",
     btnText: "text-cream",
     btnBorder: "border-transparent",
-    icon: "🎓",
+    icon: <BookSvg />,
+    iconColor: "text-navy",
     isBooking: true,
   },
   {
@@ -75,7 +98,8 @@ const SERVICES: ServiceDef[] = [
     btnBg: "bg-navy hover:bg-navy/85",
     btnText: "text-cream",
     btnBorder: "border-transparent",
-    icon: "🛒",
+    icon: <ShoppingBagSvg />,
+    iconColor: "text-navy",
     isBooking: false,
   },
 ];
@@ -147,7 +171,7 @@ export default function ServiceCards() {
             className={`${svc.bg} px-8 py-12 md:px-10 lg:px-14 flex flex-col min-h-[400px] md:min-h-[460px]`}
           >
             {/* Decorative icon */}
-            <div className="text-4xl mb-6 select-none" aria-hidden="true">
+            <div className={`w-10 h-10 mb-6 flex items-center justify-center ${svc.iconColor}`} aria-hidden="true">
               {svc.icon}
             </div>
 

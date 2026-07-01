@@ -66,8 +66,11 @@ export default function RentalBlock({ onBookClick }: Props) {
             />
           </motion.div>
           {/* Urgency badge */}
-          <div className="absolute top-6 left-6 bg-secondary text-navy font-heading font-bold text-xs uppercase tracking-[0.15em] px-4 py-2">
-            ⚡ Limited Slots Available
+          <div className="absolute top-6 left-6 bg-secondary text-navy font-heading font-bold text-xs uppercase tracking-[0.15em] px-4 py-2 flex items-center gap-1.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" strokeWidth="0" aria-hidden="true">
+              <path d="M13 2 3 14h9l-1 8 10-12h-9z" />
+            </svg>
+            Limited Slots Available
           </div>
         </div>
 
