@@ -57,9 +57,9 @@ export default function Hero({ onBookClick }: HeroProps) {
             className="font-heading font-bold text-cream leading-none tracking-tight max-w-3xl"
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
           >
-            Ride
+            Feel
             <br />
-            Above It.
+            the Lift.
           </motion.h1>
         </div>
 
