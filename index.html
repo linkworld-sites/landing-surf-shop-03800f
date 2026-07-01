@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style id='brand'>:root{
+  --bg:#0b0b0c; --surface:#141417; --surface-2:#1c1c21;
+  --fg:#f5f5f7; --fg-muted:#a1a1aa; --border:#26262b;
+  --accent:#3b82f6; --accent-fg:#fff; --radius:14px; --maxw:1100px;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.hero{padding:140px 0 90px;text-align:center}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
+.muted{color:var(--fg-muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-fg);padding:14px 28px;border-radius:var(--radius);font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,opacity .15s ease}
+.btn:hover{transform:translateY(-2px);opacity:.92}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.grid{display:grid;gap:24px}
+@media(max-width:640px){.section{padding:64px 0}.hero{padding:96px 0 64px}}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaveRider Surf Shop — Boards, Gear & eFoil Experience</title>
+<style>
+  /* ── Override accent to ocean teal ── */
+  :root {
+    --bg: #0a1628;
+    --surface: #0f2040;
+    --fg: #f0f6ff;
+    --fg-muted: #8aafd4;
+    --accent: #00c9a7;
+    --accent2: #0096ff;
+    --accent3: #ff6b35;
+    --border: rgba(0,201,167,0.18);
+    --radius: 14px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── Utility ── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 96px 0; }
+  .muted { color: var(--fg-muted); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+  }
+  .grid { display: grid; gap: 24px; }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a1628;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,201,167,0.45);
+    background: #00e0ba;
+  }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 13px 30px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 0;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(10,22,40,0.96);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { display: flex; gap: 12px; align-items: center; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Animated ocean gradient background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 50%, rgba(0,150,255,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,201,167,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, #0a1628 0%, #071430 50%, #0a1628 100%);
+  }
+
+  /* Wave SVG animated */
+  .hero-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    overflow: hidden;
+  }
+  .hero-wave svg { width: 200%; animation: wave-scroll 8s linear infinite; }
+  @keyframes wave-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: var(--accent2);
+    top: -100px; right: -80px;
+    animation: float1 12s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 300px; height: 300px;
+    background: var(--accent);
+    bottom: 80px; left: 5%;
+    animation: float2 9s ease-in-out infinite;
+  }
+  @keyframes float1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-30px, 40px) scale(1.08); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translate(0,0); }
+    50% { transform: translate(20px,-30px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,201,167,0.1);
+    border: 1px solid rgba(0,201,167,0.3);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--fg-muted);
+    margin-bottom: 40px;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--fg-muted); margin-top: 4px; }
+
+  /* Surfboard illustration */
+  .hero-visual {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 460px;
+    pointer-events: none;
+    animation: bob 5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(-50%) rotate(-4deg); }
+    50% { transform: translateY(-54%) rotate(-2deg); }
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-label {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+  }
+  .section-title p {
+    color: var(--fg-muted);
+    font-size: 1.05rem;
+    margin-top: 14px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── CATEGORIES / SHOP ── */
+  #shop { background: var(--bg); }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media(max-width:900px){ .categories-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:560px){ .categories-grid { grid-template-columns: 1fr; } }
+
+  .cat-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cat-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .cat-card-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    transition: transform 0.4s;
+  }
+  .cat-card:hover .cat-card-bg { transform: scale(1.08); }
+  .cat-1 { background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); }
+  .cat-2 { background: linear-gradient(135deg, #0d4f3c 0%, #062a24 100%); }
+  .cat-3 { background: linear-gradient(135deg, #3d1a0f 0%, #1a0a05 100%); }
+  .cat-4 { background: linear-gradient(135deg, #1a1040 0%, #0a0820 100%); }
+  .cat-5 { background: linear-gradient(135deg, #2d1b69 0%, #11063a 100%); }
+  .cat-6 { background: linear-gradient(135deg, #0a2d3d 0%, #021520 100%); }
+
+  .cat-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  .cat-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cat-count { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+  .cat-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--accent3);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── EFOIL FEATURE ── */
+  #efoil {
+    background: linear-gradient(160deg, #060e1f 0%, #0a1628 50%, #071430 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .efoil-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media(max-width:800px){ .efoil-inner { grid-template-columns: 1fr; } }
+
+  .efoil-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .efoil-ring {
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,201,167,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: spin-slow 20s linear infinite;
+  }
+  .efoil-ring::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1px dashed rgba(0,150,255,0.15);
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .efoil-icon {
+    font-size: 9rem;
+    animation: spin-slow-reverse 20s linear infinite;
+    filter: drop-shadow(0 0 30px rgba(0,201,167,0.5));
+  }
+  @keyframes spin-slow-reverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  .efoil-dot {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 14px var(--accent);
+  }
+
+  .efoil-content h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+  .efoil-content p {
+    color: var(--fg-muted);
+    margin-bottom: 28px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .efoil-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .spec-item {
+    background: rgba(0,201,167,0.06);
+    border: 1px solid rgba(0,201,167,0.15);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .spec-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .spec-key { font-size: 0.78rem; color: var(--fg-muted); margin-top: 4px; }
+
+  /* ── FEATURES ── */
+  #features { background: var(--bg); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media(max-width:900px){ .features-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:560px){ .features-grid { grid-template-columns: 1fr; } }
+
+  .feat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .feat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,201,167,0.4);
+    box-shadow: 0 16px 40px rgba(0,201,167,0.1);
+  }
+  .feat-icon {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+    display: block;
+  }
+  .feat-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .feat-card p { color: var(--fg-muted); font-size: 0.92rem; line-height: 1.65; }
+
+  /* ── LESSONS ── */
+  #lessons {
+    background: linear-gradient(160deg, #071430 0%, #0a1628 100%);
+    position: relative;
+  }
+  .lessons-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media(max-width:800px){ .lessons-inner { grid-template-columns: 1fr; } }
+
+  .lesson-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .lesson-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(0,201,167,0.04);
+    border: 1px solid rgba(0,201,167,0.1);
+    border-radius: 12px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .lesson-item:hover {
+    border-color: rgba(0,201,167,0.3);
+    background: rgba(0,201,167,0.08);
+  }
+  .lesson-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .lesson-text h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .lesson-text p { font-size: 0.88rem; color: var(--fg-muted); }
+
+  .lessons-cta-box {
+    background: linear-gradient(135deg, rgba(0,201,167,0.08) 0%, rgba(0,150,255,0.06) 100%);
+    border: 1px solid rgba(0,201,167,0.2);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .lessons-cta-box .emoji-big { font-size: 4.5rem; display: block; margin-bottom: 20px; }
+  .lessons-cta-box h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; }
+  .lessons-cta-box p { color: var(--fg-muted); font-size: 0.95rem; margin-bottom: 28px; }
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,201,167,0.1);
+    border: 1px solid rgba(0,201,167,0.25);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .avail-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 2s infinite;
+  }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--bg); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  @media(max-width:900px){ .pricing-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:560px){ .pricing-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .price-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(160deg, rgba(0,201,167,0.1) 0%, var(--surface) 60%);
+    box-shadow: 0 0 0 1px rgba(0,201,167,0.3), 0 20px 50px rgba(0,201,167,0.15);
+    transform: scale(1.03);
+  }
+  .price-card.featured:hover {
+    transform: scale(1.03) translateY(-6px);
+  }
+  .popular-tag {
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--accent);
+    color: #0a1628;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 6px 16px;
+    border-bottom-left-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .price-tier { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .price-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+  .price-desc { font-size: 0.85rem; color: var(--fg-muted); margin-bottom: 28px; line-height: 1.5; }
+  .price-amount { margin-bottom: 28px; }
+  .price-from { font-size: 0.8rem; color: var(--fg-muted); }
+  .price-num {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--fg);
+  }
+  .price-num span { font-size: 1.2rem; vertical-align: super; font-weight: 600; }
+  .price-per { font-size: 0.8rem; color: var(--fg-muted); }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .price-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+  }
+  .price-features li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #reviews {
+    background: linear-gradient(160deg, #071430 0%, #0a1628 100%);
+    overflow: hidden;
+  }
+  .reviews-marquee-wrap { position: relative; }
+  .reviews-marquee {
+    display: flex;
+    gap: 20px;
+    animation: marquee-scroll 30s linear infinite;
+    width: max-content;
+  }
+  .reviews-marquee:hover { animation-play-state: paused; }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    width: 300px;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .review-card:hover { border-color: rgba(0,201,167,0.35); }
+  .stars { color: #fbbf24; font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+  .review-text { font-size: 0.92rem; color: var(--fg-muted); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #0a1628;
+  }
+  .reviewer-name { font-size: 0.9rem; font-weight: 700; }
+  .reviewer-loc { font-size: 0.75rem; color: var(--fg-muted); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e1c;
+    border-top: 1px solid var(--border);
+    padding: 72px 0 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 56px;
+  }
+  @media(max-width:800px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:480px){ .footer-grid { grid-template-columns: 1fr; } }
+
+  .footer-brand {}
+  .footer-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-tagline { font-size: 0.88rem; color: var(--fg-muted); line-height: 1.65; margin-bottom: 24px; max-width: 280px; }
+  .socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .social-btn:hover {
+    border-color: var(--accent);
+    background: rgba(0,201,167,0.1);
+    transform: translateY(-2px);
+  }
+
+  .footer-col h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--fg);
+    margin-bottom: 18px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: var(--fg-muted); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* ── RESPONSIVE NAV ── */
+  @media(max-width:768px){
+    .nav-links { display: none; }
+    .hero-visual { display: none; }
+    .hero-stats { gap: 24px; }
+  }
+  @media(max-width:640px){
+    .section { padding: 64px 0; }
+    .hero h1 { letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVIGATION
+════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Wave<span>Rider</span></a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#efoil">eFoil</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#shop" class="btn-ghost">Browse Shop</a>
+      <a href="#lessons" class="btn">Book Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Floating board illustration -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 20px 60px rgba(0,201,167,0.3))">
+      <!-- Board body -->
+      <ellipse cx="150" cy="300" rx="62" ry="260" fill="url(#boardGrad)" rx="62"/>
+      <defs>
+        <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00c9a7"/>
+          <stop offset="40%" stop-color="#0096ff"/>
+          <stop offset="100%" stop-color="#0a1628"/>
+        </linearGradient>
+        <linearGradient id="stripeGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+      <!-- Stripe -->
+      <ellipse cx="150" cy="300" rx="22" ry="240" fill="url(#stripeGrad)"/>
+      <!-- Fin -->
+      <path d="M150 520 L130 580 L150 560 L170 580 Z" fill="#00c9a7" opacity="0.8"/>
+      <!-- Nose highlight -->
+      <ellipse cx="150" cy="62" rx="25" ry="35" fill="rgba(255,255,255,0.15)"/>
+      <!-- Electric glow strip -->
+      <rect x="138" y="180" width="24" height="220" rx="12" fill="rgba(0,201,167,0.2)"/>
+      <!-- Logo mark -->
+      <text x="150" y="310" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="16" font-weight="800" font-family="system-ui">WR</text>
+    </svg>
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="hero-content">
+      <div class="hero-badge">🌊 Now Stocking eFoil Electric Boards</div>
+      <h1>Ride the Wave.<br><span class="highlight">Own the Ocean.</span></h1>
+      <p class="hero-sub">Premium surfboards, wetsuits, accessories — and the latest eFoil electric hydrofoil boards. Lessons for all levels, rentals, and gear that lasts.</p>
+      <div class="hero-actions">
+        <a href="#shop" class="btn">Shop Boards</a>
+        <a href="#efoil" class="btn-ghost">⚡ Discover eFoil</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Boards In-Store</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">14yr</div>
+          <div class="stat-label">Local Expertise</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Average Review</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2,400+</div>
+          <div class="stat-label">Happy Surfers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:120px;">
+      <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,120 L0,120 Z" fill="#0a1628" opacity="0.6"/>
+      <path d="M0,80 C240,40 480,120 720,80 C960,40 1200,120 1440,80 L1440,120 L0,120 Z" fill="#0a1628"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SHOP CATEGORIES
+════════════════════════════════════ -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="section-label">Our Collection</span>
+      <h2>Everything You Need<br>to Catch the Perfect Wave</h2>
+      <p>From beginner foamies to pro shortboards, wetsuits, fins, leashes, and the hottest eFoil electric boards on the market.</p>
+    </div>
+
+    <div class="categories-grid">
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-1">🏄</div>
+        <div class="cat-overlay">
+          <div class="cat-name">Surfboards</div>
+          <div class="cat-count">120+ models</div>
+        </div>
+      </div>
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-2">⚡</div>
+        <div class="cat-overlay">
+          <div class="cat-name">eFoil Electric Boards</div>
+          <div class="cat-count">Premium selection</div>
+        </div>
+        <div class="cat-badge">New</div>
+      </div>
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-3">🤿</div>
+        <div class="cat-overlay">
+          <div class="cat-name">Wetsuits & Rash Guards</div>
+          <div class="cat-count">All sizes, all seasons</div>
+        </div>
+      </div>
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-4">🔱</div>
+        <div class="cat-overlay">
+          <div class="cat-name">Fins & Hydrofoils</div>
+          <div class="cat-count">Performance hardware</div>
+        </div>
+      </div>
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-5">🎒</div>
+        <div class="cat-overlay">
+          <div class="cat-name">Bags & Board Cases</div>
+          <div class="cat-count">Travel-ready protection</div>
+        </div>
+      </div>
+
+      <div class="cat-card fade-up">
+        <div class="cat-card-bg cat-6">🌊</div>
+        <div class="cat-overlay">
+          <div class="cat-name">Surf Accessories</div>
+          <div class="cat-count">Wax, leashes & more</div>
+        </div>
+        <div class="cat-badge" style="background:var(--accent2);">Sale</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EFOIL FEATURE
+════════════════════════════════════ -->
+<section class="section" id="efoil">
+  <div class="container">
+    <div class="efoil-inner">
+
+      <div class="efoil-visual fade-up">
+        <div class="efoil-ring">
+          <span class="efoil-icon">⚡</span>
+          <div class="efoil-dot"></div>
+        </div>
+      </div>
+
+      <div class="efoil-content fade-up">
+        <span class="section-label">The Future of Surfing</span>
+        <h2>eFoil Electric<br>Hydrofoil Boards</h2>
+        <p>Experience flying above the water on a silent electric hydrofoil. No waves needed — just twist the handheld remote and glide up to 35 mph, up to 90 minutes per charge. The fastest-growing segment in watersports.</p>
+
+        <div class="efoil-specs">
+          <div class="spec-item">
+            <div class="spec-val">35mph</div>
+            <div class="spec-key">Top Speed</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">90min</div>
+            <div class="spec-key">Battery Life</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">~$12B</div>
+            <div class="spec-key">Market by 2032</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">0dB</div>
+            <div class="spec-key">Engine Noise</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#pricing" class="btn">View eFoil Packages</a>
+          <a href="#lessons" class="btn-ghost">Try a Lesson First</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FEATURES / WHY US
+════════════════════════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="section-label">Why WaveRider</span>
+      <h2>More Than Just a Shop</h2>
+      <p>We're surfers first. Every recommendation, every rental, every lesson comes from real water time and genuine stoke.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">🏪</span>
+        <h3>Local Expert Staff</h3>
+        <p>Our team surfs these breaks daily. We'll match you to the perfect board for your skill level, body type, and local conditions.</p>
+      </div>
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">🔧</span>
+        <h3>In-House Ding Repair</h3>
+        <p>Got a ding? We fix boards fast — usually same-day — so you spend less time waiting and more time in the water.</p>
+      </div>
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">⚡</span>
+        <h3>eFoil Demo Days</h3>
+        <p>Try before you buy. Join our monthly eFoil demo events at the beach and feel the future of surfing under your feet.</p>
+      </div>
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">🚚</span>
+        <h3>Free Local Delivery</h3>
+        <p>Order online, we'll deliver to your door or hotel — boards, wetsuits, accessories — anywhere within 30 miles.</p>
+      </div>
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">🎓</span>
+        <h3>ISA-Certified Instruction</h3>
+        <p>All our surf coaches are ISA certified with First Aid training. Beginners to advanced — we'll take your surfing to the next level.</p>
+      </div>
+
+      <div class="feat-card fade-up">
+        <span class="feat-icon">♻️</span>
+        <h3>Eco-First Brands</h3>
+        <p>We stock brands that share our love for the ocean — sustainable wetsuits, recycled board bags, and reef-safe accessories.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     LESSONS & RENTALS
+════════════════════════════════════ -->
+<section class="section" id="lessons">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="section-label">Learn & Explore</span>
+      <h2>Lessons, Rentals &<br>eFoil Experiences</h2>
+      <p>Whether you've never stood on a board or you're ready to fly above the water, we have the perfect session for you.</p>
+    </div>
+
+    <div class="lessons-inner">
+
+      <ul class="lesson-list fade-up">
+        <li class="lesson-item">
+          <span class="lesson-icon">🌊</span>
+          <div class="lesson-text">
+            <h4>Beginner Surf Lessons</h4>
+            <p>2-hour beach & water session covering paddling, pop-up, and your first waves. Max 4 students per instructor.</p>
+          </div>
+        </li>
+        <li class="lesson-item">
+          <span class="lesson-icon">📈</span>
+          <div class="lesson-text">
+            <h4>Intermediate Coaching</h4>
+            <p>Sharpen your turns, read the lineup, and build consistency. Video analysis available to fast-track progress.</p>
+          </div>
+        </li>
+        <li class="lesson-item">
+          <span class="lesson-icon">⚡</span>
+          <div class="lesson-text">
+            <h4>eFoil Lesson & Rental</h4>
+            <p>60-min guided eFoil session with full safety briefing, equipment included. Calm water locations used.</p>
+          </div>
+        </li>
+        <li class="lesson-item">
+          <span class="lesson-icon">🤙</span>
+          <div class="lesson-text">
+            <h4>Weekend Surf Camps</h4>
+            <p>3-day immersive camps with morning sessions, board theory, ocean safety, and evening social events.</p>
+          </div>
+        </li>
+        <li class="lesson-item">
+          <span class="lesson-icon">🏄</span>
+          <div class="lesson-text">
+            <h4>Board Rentals (Daily/Weekly)</h4>
+            <p>Longboards, shortboards, foamies, and eFoils available to rent. Wetsuit included with every booking.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="lessons-cta-box fade-up">
+        <span class="emoji-big">🏄‍♂️</span>
+        <div class="avail-badge"><span class="avail-dot"></span>Spots Available This Week</div>
+        <h3>Ready to Get in the Water?</h3>
+        <p>Sessions fill fast during peak season. Lock in your spot today — all gear provided, all levels welcome.</p>
+        <a href="#pricing" class="btn" style="display:block;text-align:center;margin-bottom:12px;">Book a Session</a>
+        <a href="#" class="btn-ghost" style="display:block;text-align:center;">View Full Schedule</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PRICING
+════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="section-label">Transparent Pricing</span>
+      <h2>Simple, Honest Rates</h2>
+      <p>No hidden fees. No upsells. Just great value for real surfers and curious newcomers alike.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Tier 1 -->
+      <div class="price-card fade-up">
+        <div class="price-tier">Rental</div>
+        <div class="price-name">Day Pass</div>
+        <div class="price-desc">Board + wetsuit rental for a full day. Perfect for visitors and casual surfers.</div>
+        <div class="price-amount">
+          <div class="price-from">Starting from</div>
+          <div class="price-num"><span>$</span>45</div>
+          <div class="price-per">per day</div>
+        </div>
+        <ul class="price-features">
+          <li>Softboard or shortboard choice</li>
+          <li>Wetsuit included</li>
+          <li>Leash & wax included</li>
+          <li>Beach delivery available (+$10)</li>
+        </ul>
+        <a href="#" class="btn-ghost" style="display:block;text-align:center;">Rent a Board</a>
+      </div>
+
+      <!-- Tier 2 — Featured -->
+      <div class="price-card featured fade-up">
+        <div class="popular-tag">Most Popular</div>
+        <div class="price-tier">Lesson + Rental</div>
+        <div class="price-name">Surf Experience</div>
+        <div class="price-desc">Our bestselling package — a guided lesson with a certified coach plus full-day gear rental.</div>
+        <div class="price-amount">
+          <div class="price-from">Starting from</div>
+          <div class="price-num"><span>$</span>95</div>
+          <div class="price-per">per person</div>
+        </div>
+        <ul class="price-features">
+          <li>2-hour ISA-certified lesson</li>
+          <li>All-day board & wetsuit rental</li>
+          <li>Safety briefing included</li>
+          <li>Video feedback optional</li>
+          <li>Max 4 students per coach</li>
+        </ul>
+        <a href="#" class="btn" style="display:block;text-align:center;">Book Now</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="price-card fade-up">
+        <div class="price-tier">eFoil</div>
+        <div class="price-name">eFoil Session</div>
+        <div class="price-desc">Try the electric hydrofoil experience. 60-min guided session with all equipment included.</div>
+        <div class="price-amount">
+          <div class="price-from">Starting from</div>
+          <div class="price-num"><span>$</span>149</div>
+          <div class="price-per">per session</div>
+        </div>
+        <ul class="price-features">
+          <li>60-minute guided eFoil ride</li>
+          <li>Full safety briefing</li>
+          <li>Board + remote + safety gear</li>
+          <li>Calm-water location</li>
+          <li>Instructor in the water</li>
+        </ul>
+        <a href="#" class="btn-ghost" style="display:block;text-align:center;">Book eFoil</a>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="fade-up">
+      <p class="muted" style="margin-bottom:16px;">Looking for a multi-day surf camp, group booking, or eFoil purchase?</p>
+      <a href="#" class="btn-ghost">Request Custom Quote →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     REVIEWS MARQUEE
+════════════════════════════════════ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="section-label">Happy Surfers</span>
+      <h2>What Our Customers Say</h2>
+    </div>
+  </div>
+
+  <div class="reviews-marquee-wrap" style="overflow:hidden;">
+    <div class="reviews-marquee">
+
+      <!-- Cards duplicated for infinite loop -->
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The eFoil session was mind-blowing. I was up and riding within 15 minutes. Best $149 I've ever spent on vacation."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JM</div>
+          <div>
+            <div class="reviewer-name">Jake M.</div>
+            <div class="reviewer-loc">📍 San Diego, CA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Finally found a surf shop staffed by actual surfers. They pointed me to the perfect board for small beach breaks and I've been hooked ever since."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SC</div>
+          <div>
+            <div class="reviewer-name">Sarah C.</div>
+            <div class="reviewer-loc">📍 Sydney, AUS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Got my ding repaired in 3 hours — same day! Incredible service. WaveRider is the only shop I'll ever use."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TL</div>
+          <div>
+            <div class="reviewer-name">Tom L.</div>
+            <div class="reviewer-loc">📍 Encinitas, CA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Booked the beginner lesson for my whole family (ages 8-45). Our instructor was patient, fun, and incredibly skilled. 10/10!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">RP</div>
+          <div>
+            <div class="reviewer-name">Rachel P.</div>
+            <div class="reviewer-loc">📍 Portland, OR</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Rented boards for a week — delivery to our Airbnb, picked up at the end. So smooth. The boards were in perfect condition."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">AK</div>
+          <div>
+            <div class="reviewer-name">Anders K.</div>
+            <div class="reviewer-loc">📍 Oslo, Norway</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The eFoil demo day changed my life. Bought one on the spot. The team walked me through everything. Worth every penny."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MH</div>
+          <div>
+            <div class="reviewer-name">Maya H.</div>
+            <div class="reviewer-loc">📍 Miami, FL</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DUPLICATES for seamless loop -->
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The eFoil session was mind-blowing. I was up and riding within 15 minutes. Best $149 I've ever spent on vacation."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JM</div>
+          <div>
+            <div class="reviewer-name">Jake M.</div>
+            <div class="reviewer-loc">📍 San Diego, CA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Finally found a surf shop staffed by actual surfers. They pointed me to the perfect board for small beach breaks and I've been hooked ever since."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SC</div>
+          <div>
+            <div class="reviewer-name">Sarah C.</div>
+            <div class="reviewer-loc">📍 Sydney, AUS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Got my ding repaired in 3 hours — same day! Incredible service. WaveRider is the only shop I'll ever use."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TL</div>
+          <div>
+            <div class="reviewer-name">Tom L.</div>
+            <div class="reviewer-loc">📍 Encinitas, CA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Booked the beginner lesson for my whole family (ages 8-45). Our instructor was patient, fun, and incredibly skilled. 10/10!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">RP</div>
+          <div>
+            <div class="reviewer-name">Rachel P.</div>
+            <div class="reviewer-loc">📍 Portland, OR</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Rented boards for a week — delivery to our Airbnb, picked up at the end. So smooth. The boards were in perfect condition."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">AK</div>
+          <div>
+            <div class="reviewer-name">Anders K.</div>
+            <div class="reviewer-loc">📍 Oslo, Norway</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The eFoil demo day changed my life. Bought one on the spot. The team walked me through everything. Worth every penny."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MH</div>
+          <div>
+            <div class="reviewer-name">Maya H.</div>
+            <div class="reviewer-loc">📍 Miami, FL</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CTA BANNER
+════════════════════════════════════ -->
+<section style="padding:80px 0;background:linear-gradient(135deg, rgba(0,201,167,0.12) 0%, rgba(0,150,255,0.08) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">The Ocean Is Calling</span>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.8px;margin-bottom:16px;line-height:1.15;">
+      Don't Just Watch the Waves.<br><span style="color:var(--accent);">Ride Them.</span>
+    </h2>
+    <p style="color:var(--fg-muted);font-size:1.05rem;max-width:480px;margin:0 auto 36px;">
+      Book a lesson, rent a board, or come try our eFoil in-store. The stoke is real, and the water's warm.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="#lessons" class="btn" style="font-size:1.05rem;padding:16px 40px;">Book an Experience</a>
+      <a href="#shop" class="btn-ghost" style="font-size:1.05rem;padding:15px 38px;">Explore the
