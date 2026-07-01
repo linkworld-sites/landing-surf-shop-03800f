@@ -12,8 +12,8 @@ const SHOP_LINKS = [
 
 const RENTAL_LINKS = [
   { href: "/#rental", label: "eFoil Rentals" },
-  { href: "/#rental", label: "Beginner Lessons" },
-  { href: "/#rental", label: "Book a Session" },
+  { href: "/book", label: "Beginner Lessons" },
+  { href: "/book", label: "Book a Session" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/blog", label: "Journal" },
 ];

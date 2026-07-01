@@ -4,6 +4,9 @@ import ShopPageClient from "@/components/ShopPageClient";
 export const metadata = {
   title: "Shop Surf Gear — WAVECREST",
   description: "Premium surfboards, wetsuits, fins, leashes, and eFoil rental bookings. Everything you need to get on the water.",
+  alternates: {
+    canonical: "https://b648ebe4.run.linkworld.ai/shop",
+  },
 };
 
 export default async function ShopPage() {

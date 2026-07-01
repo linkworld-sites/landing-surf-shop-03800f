@@ -4,6 +4,9 @@ import { getPosts } from "@/lib/posts";
 export const metadata = {
   title: "Journal — WAVECREST",
   description: "Stories from the water. eFoil tips, surf culture, gear guides, and dispatches from the lineup.",
+  alternates: {
+    canonical: "https://b648ebe4.run.linkworld.ai/blog",
+  },
 };
 
 export default function BlogIndex() {

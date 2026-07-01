@@ -6,6 +6,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { CartProvider } from "@/components/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -31,13 +32,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="font-body bg-cream text-navy antialiased">
+      <body className="font-body bg-cream text-navy antialiased pb-14">
         <FunnelTracker />
         <CartProvider>
           <Navbar />
           <SmoothScroll>{children}</SmoothScroll>
           <Footer />
         </CartProvider>
+        <StickyCTA />
         <CookieConsent />
       </body>
     </html>

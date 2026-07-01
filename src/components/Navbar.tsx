@@ -8,7 +8,7 @@ import { useCart } from "@/components/CartContext";
 const NAV_LINKS = [
   { href: "/shop", label: "Shop" },
   { href: "/#rental", label: "Rent eFoils" },
-  { href: "/#booking", label: "Book" },
+  { href: "/book", label: "Book" },
   { href: "/blog", label: "Journal" },
 ];
 
@@ -141,8 +141,8 @@ export default function Navbar() {
               </nav>
               <div className="px-6 py-8">
                 <Link
-                  href="/#booking"
-                  onClick={() => setMenuOpen(false)}
+                  href="/book"
+                  onClick={() => { setMenuOpen(false); }}
                   className="block w-full bg-primary text-navy text-center font-heading font-bold text-sm uppercase tracking-widest py-4"
                 >
                   Book Now

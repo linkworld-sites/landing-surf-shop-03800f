@@ -13,6 +13,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} — WAVECREST Journal`,
     description: post.description,
+    alternates: {
+      canonical: `https://b648ebe4.run.linkworld.ai/blog/${slug}`,
+    },
   };
 }
 
@@ -63,7 +66,7 @@ export default async function BlogPost({
           <Link href="/blog" className="font-body text-navy/50 hover:text-primary text-sm transition-colors inline-flex items-center gap-2">
             ← All posts
           </Link>
-          <Link href="/#rental" className="font-heading font-bold text-primary text-xs uppercase tracking-widest hover:text-primary/80 transition-colors inline-flex items-center gap-2">
+          <Link href="/book" className="font-heading font-bold text-primary text-xs uppercase tracking-widest hover:text-primary/80 transition-colors inline-flex items-center gap-2">
             Book a session →
           </Link>
         </div>

@@ -12,7 +12,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = getLegalPage(slug);
   if (!page) return {};
-  return { title: `${page.title || slug} — WAVECREST` };
+  return {
+    title: `${page.title || slug} — WAVECREST`,
+    alternates: {
+      canonical: `https://b648ebe4.run.linkworld.ai/legal/${slug}`,
+    },
+  };
 }
 
 export default async function LegalPage({
