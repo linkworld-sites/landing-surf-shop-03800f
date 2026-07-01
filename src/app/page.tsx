@@ -90,26 +90,26 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is an eFoil?",
+          name: "Do I need surf experience to eFoil?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "An eFoil is an electric hydrofoil surfboard — a board with a silent electric motor and a submerged wing that lifts you above the water as you pick up speed. No waves needed, no noise, just pure glide. It's hands-down the most surreal feeling you can have on water.",
+            text: "Nope — zero surf experience required. Our beginner lessons are built exactly for curious newcomers: we start on land, walk you through the controls, then coach you in calm water until you're hovering. Most people are airborne within their first session. The water is genuinely for everyone.",
           },
         },
         {
           "@type": "Question",
-          name: "Do I need surf experience to rent an eFoil?",
+          name: "What's included in a rental?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Nope. Zero surf experience required. Our beginner lessons are designed exactly for that — we'll walk you through everything on land first, then coach you in the water until you're riding. Most people are up and gliding in their first session.",
+            text: "Everything you need and nothing you don't. Board, motor, life vest, helmet, and a quick safety briefing before you hit the water. Just show up — we handle all the gear. Hour-long sessions include an instructor check-in at the start so you're comfortable with the throttle before you head out solo.",
           },
         },
         {
           "@type": "Question",
-          name: "How much does an eFoil lesson cost?",
+          name: "How do I book?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Our Beginner eFoil Lesson starts at $199 for a 2-hour session with a certified instructor. That includes all equipment, safety briefing, and in-water coaching. Hour-long rentals (for riders with prior eFoil experience) start at $149.",
+            text: "Hit the Book a Ride button, fill in your preferred session type and date, and we'll confirm your slot within a few hours. Walk-ins welcome when slots are open. Free cancellation up to 24 hours before your session — no awkward phone calls needed.",
           },
         },
         {
