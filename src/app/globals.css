@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F5F0E8; }
+::-webkit-scrollbar-thumb { background: #0A2E4A; border-radius: 3px; }
+
+/* Text selection */
+::selection { background: #00B4D8; color: #0A2E4A; }
+
+/* Blog / legal post body */
+.post-body h1 { font-size: 2em; font-weight: 700; margin: 1.8em 0 0.7em; font-family: var(--font-heading); letter-spacing: -0.02em; }
+.post-body h2 { font-size: 1.5em; font-weight: 700; margin: 1.6em 0 0.6em; font-family: var(--font-heading); }
+.post-body h3 { font-size: 1.25em; font-weight: 600; margin: 1.4em 0 0.5em; font-family: var(--font-heading); }
+.post-body p { margin: 1em 0; line-height: 1.8; }
+.post-body ul, .post-body ol { margin: 1em 0; padding-left: 1.5em; }
+.post-body ul { list-style: disc; }
+.post-body ol { list-style: decimal; }
+.post-body a { color: #00B4D8; text-decoration: underline; }
+.post-body blockquote { border-left: 3px solid #00B4D8; padding-left: 1em; opacity: 0.85; margin: 1.5em 0; font-style: italic; }
+.post-body img { border-radius: 0.5em; margin: 1.5em 0; max-width: 100%; }
+.post-body strong { font-weight: 700; }
+.post-body hr { border: none; border-top: 1px solid rgba(10,46,74,0.15); margin: 2em 0; }
+.post-body code { background: rgba(10,46,74,0.07); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.9em; }
+
+/* Ticker bar pause on hover */
+.ticker-track:hover { animation-play-state: paused; }
