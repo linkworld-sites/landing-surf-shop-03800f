@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: "/shop", label: "Shop" },
   { href: "/#rental", label: "Rent eFoils" },
   { href: "/book", label: "Book" },
-  { href: "/blog", label: "Journal" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {

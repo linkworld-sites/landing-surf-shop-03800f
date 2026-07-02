@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getPosts } from "@/lib/posts";
 
 export const metadata = {
-  title: "Journal — WAVECREST",
+  title: "Blog — WAVECREST",
   description: "Stories from the water. eFoil tips, surf culture, gear guides, and dispatches from the lineup.",
   alternates: {
     canonical: "https://b648ebe4.run.linkworld.ai/blog",
@@ -24,7 +24,7 @@ export default function BlogIndex() {
             className="font-heading font-bold text-cream leading-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
-            The WAVECREST Journal
+            The WAVECREST Blog
           </h1>
           <p className="font-body text-cream/50 mt-3 text-sm">
             eFoil tips, surf culture, gear guides, and dispatches from the lineup.

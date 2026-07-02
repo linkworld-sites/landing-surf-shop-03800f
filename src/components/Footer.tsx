@@ -15,7 +15,7 @@ const RENTAL_LINKS = [
   { href: "/book", label: "Beginner Lessons" },
   { href: "/book", label: "Book a Session" },
   { href: "/#how-it-works", label: "How It Works" },
-  { href: "/blog", label: "Journal" },
+  { href: "/blog", label: "Blog" },
 ];
 
 const SOCIAL_LINKS = [
@@ -140,7 +140,7 @@ export default function Footer() {
               Cookies
             </Link>
             <Link href="/blog" className="font-body text-cream/30 hover:text-cream/60 text-xs transition-colors">
-              Journal
+              Blog
             </Link>
           </nav>
         </div>
